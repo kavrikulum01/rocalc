@@ -685,7 +685,8 @@ function BattleCalc999() {
             n_A_Weapon_element = 0,
             Shieldw = 1 * c.SkillSubNum.value,
             n_Delay[2] = .7,
-            wbairitu2 = 1 + .3 * n_A_ActiveSkillLV,
+            // Shield Boomerang damage increased to (200 + 20 × SkillLV)%. (300% at max level).
+            wbairitu2 = 2 + .2 * n_A_ActiveSkillLV,
             384 == n_A_ActiveSkill && (n_Delay[2] = .35,
             wbairitu2 *= 2),
             SRV) {
