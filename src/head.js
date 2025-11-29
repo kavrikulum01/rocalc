@@ -4199,6 +4199,9 @@ function calc() {
     7 == n_A_ActiveSkill && (w_HIT *= 1 + .1 * n_A_ActiveSkillLV);
     272 == n_A_ActiveSkill && (w_HIT *= 1 + .1 * n_A_ActiveSkillLV);
     337 == n_A_ActiveSkill && (w_HIT = 100);
+    158 == n_A_ActiveSkill && (w_HIT = 100);
+    // Shield Boomerang and Shield Charge can no longer miss.
+    (159 == n_A_ActiveSkill || 384 == n_A_ActiveSkill) && (w_HIT = 100);
     0 == SRV && 324 == n_A_ActiveSkill && (w_HIT += 20);
     384 == n_A_ActiveSkill && (w_HIT = 100);
     SkillSearch(364) && (w_HIT = 100);
