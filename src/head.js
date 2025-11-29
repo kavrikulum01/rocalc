@@ -680,6 +680,7 @@ function BattleCalc999() {
             CastAndDelay(),
             BattleCalc998()
         } else if (159 == n_A_ActiveSkill || 384 == n_A_ActiveSkill) {
+            var stoneDiscusMod = EquipNumSearch(1371) ? 1 + .03 * n_A_LEFT_REFINE : 1;
             if (n_PerHIT_DMG = 0,
             n_rangedAtk = 1,
             n_A_Weapon_element = 0,
@@ -707,6 +708,7 @@ function BattleCalc999() {
                     w_DMG[_] = n_A_ATK_IP * wbairitu) : (w_DMG[_] = (o + Shieldw) * wbairitu,
                     w_DMG[_] = Math.floor(w_DMG[_] * defReduction(selectedMonster[14] - M_DEF1) - (n_B_DEF2[_] - M_DEF2))),
                     w_DMG[_] = Math.floor(w_DMG[_] * wbairitu2),
+                    w_DMG[_] = Math.floor(w_DMG[_] * stoneDiscusMod),
                     w_DMG[_] = ApplyModifiers(w_DMG[_]) + wSBr,
                     0 != M_DEF1 && (w_DMG[2] = w_DMG[1] = w_DMG[0]),
                     w_DMG[_] < 1 && (w_DMG[_] = 1),
@@ -721,6 +723,7 @@ function BattleCalc999() {
                 for (var _ = 0; 2 >= _; _++)
                     w_DMG[_] = n_A_ATK * wbairitu + Shieldw + wSBr,
                     w_DMG[_] = Math.floor(Math.floor(w_DMG[_] * defReduction(selectedMonster[14]) - n_B_DEF2[_]) * wbairitu2),
+                    w_DMG[_] = Math.floor(w_DMG[_] * stoneDiscusMod),
                     w_DMG[_] = ApplyModifiers(w_DMG[_]),
                     w_DMG[_] < 1 && (w_DMG[_] = 1),
                     w_DMG[_] = Math.floor(w_DMG[_] * element[selectedMonster[3]][0]),
@@ -731,6 +734,7 @@ function BattleCalc999() {
             CastAndDelay(),
             BattleCalc998()
         } else if (324 == n_A_ActiveSkill) {
+            var stoneDiscusMod = EquipNumSearch(90071) ? 1 + .03 * n_A_LEFT_REFINE : 1;
             if (n_PerHIT_DMG = 0,
             n_rangedAtk = 1,
             n_A_Weapon_element = 0,
@@ -747,6 +751,7 @@ function BattleCalc999() {
                 for (var _ = 0; 2 >= _; _++)
                     w_DMG[_] = s * wbairitu + Shieldw,
                     w_DMG[_] = Math.floor(Math.floor(5 * w_DMG[_] * defReduction(selectedMonster[14]) - n_B_DEF2[_]) * wbairitu2) + 5 * n_A_LEFT_REFINE * 2,
+                    w_DMG[_] = Math.floor(w_DMG[_] * stoneDiscusMod),
                     w_DMG[_] = ApplyModifiers(w_DMG[_]),
                     w_DMG[_] < 1 && (w_DMG[_] = 1),
                     305 == m_Item[n_A_Equip[5]][0] ? (w_DMG[_] = 0,
@@ -771,6 +776,7 @@ function BattleCalc999() {
                 for (var _ = 0; 2 >= _; _++)
                     w_DMG[_] = (n_A_ATK * defReduction(selectedMonster[14]) - n_B_DEF2[_]) * wbairitu2,
                     w_DMG[_] += wSC2[_],
+                    w_DMG[_] = Math.floor(w_DMG[_] * stoneDiscusMod),
                     w_DMG[_] = ApplyModifiers(w_DMG[_]),
                     w_DMG[_] < 1 && (w_DMG[_] = 1),
                     305 == m_Item[n_A_Equip[5]][0] && (w_DMG[_] = 0),
@@ -2016,6 +2022,13 @@ function BattleHiDam() {
     0 != wBHD)
         for (i = 0; 6 >= i; i++)
             w_HiDam[i] -= Math.floor(w_HiDam[i] * wBHD / 100);
+    // Apply Herald of God's refine-based mitigation (-2% damage taken per refine)
+    if (EquipNumSearch(433)) {
+        var refineCut = 2 * n_A_LEFT_REFINE;
+        if (refineCut > 0)
+            for (i = 0; 6 >= i; i++)
+                w_HiDam[i] -= Math.floor(w_HiDam[i] * refineCut / 100);
+    }
     if (wBHD = n_tok[190 + selectedMonster[4]],
     0 != wBHD)
         for (i = 0; 6 >= i; i++)
@@ -4181,6 +4194,12 @@ function calc() {
     }
 
     StAllCalc();
+
+    // Keep Shield Boomerang weight input in sync with the equipped shield so damage reflects current gear without manual input
+    if ((159 == n_A_ActiveSkill || 384 == n_A_ActiveSkill) && document.calcForm.SkillSubNum) {
+        var sbShield = m_Item[n_A_Equip[5]];
+        sbShield && (document.calcForm.SkillSubNum.value = sbShield[6]);
+    }
 
     // Multiplier on how the weapon equiped affects the monster selected
     wCSize = m_WeaponSize[n_A_WeaponType][selectedMonster[4]];
