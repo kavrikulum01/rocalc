@@ -4198,6 +4198,8 @@ function calc() {
     83 != n_A_ActiveSkill && 388 != n_A_ActiveSkill || !SkillSearch(381) || (w_HIT *= 1.5);
     7 == n_A_ActiveSkill && (w_HIT *= 1 + .1 * n_A_ActiveSkillLV);
     272 == n_A_ActiveSkill && (w_HIT *= 1 + .1 * n_A_ActiveSkillLV);
+    // Holy Cross skill has an accuracy bonus of +2% per skill level. (+20% at max level)
+    161 == n_A_ActiveSkill && (w_HIT *= 1 + .02 * n_A_ActiveSkillLV);
     337 == n_A_ActiveSkill && (w_HIT = 100);
     158 == n_A_ActiveSkill && (w_HIT = 100);
     // Shield Boomerang and Shield Charge can no longer miss.
