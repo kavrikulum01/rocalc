@@ -680,7 +680,8 @@ function BattleCalc999() {
             CastAndDelay(),
             BattleCalc998()
         } else if (159 == n_A_ActiveSkill || 384 == n_A_ActiveSkill) {
-            var stoneDiscusMod = EquipNumSearch(1371) ? 1 + .03 * n_A_LEFT_REFINE : 1;
+            var stoneDiscusMod = EquipNumSearch(1371) ? 1 + .03 * n_A_LEFT_REFINE : 1
+              , shieldRefineBonus = 10 * n_A_LEFT_REFINE;
             if (n_PerHIT_DMG = 0,
             n_rangedAtk = 1,
             n_A_Weapon_element = 0,
@@ -691,7 +692,6 @@ function BattleCalc999() {
             384 == n_A_ActiveSkill && (n_Delay[2] = .35,
             wbairitu2 *= 2),
             SRV) {
-                wSBr = 10 * n_A_LEFT_REFINE,
                 EquipNumSearch(620) || EquipNumSearch(409) || CardNumSearch(255) || EquipNumSearch(43) ? (M_DEF1 = selectedMonster[14],
                 M_DEF2 = n_B_DEF2[0]) : (EquipNumSearch(393) || EquipNumSearch(904)) && 7 == selectedMonster[2] ? (M_DEF1 = selectedMonster[14],
                 M_DEF2 = n_B_DEF2[0]) : (EquipNumSearch(392) || EquipNumSearch(401)) && 3 == selectedMonster[2] ? (M_DEF1 = selectedMonster[14],
@@ -709,7 +709,7 @@ function BattleCalc999() {
                     w_DMG[_] = Math.floor(w_DMG[_] * defReduction(selectedMonster[14] - M_DEF1) - (n_B_DEF2[_] - M_DEF2))),
                     w_DMG[_] = Math.floor(w_DMG[_] * wbairitu2),
                     w_DMG[_] = Math.floor(w_DMG[_] * stoneDiscusMod),
-                    w_DMG[_] = ApplyModifiers(w_DMG[_]) + wSBr,
+                    w_DMG[_] = ApplyModifiers(w_DMG[_]),
                     0 != M_DEF1 && (w_DMG[2] = w_DMG[1] = w_DMG[0]),
                     w_DMG[_] < 1 && (w_DMG[_] = 1),
                     305 == m_Item[n_A_Equip[5]][0] && (w_DMG[_] = 0),
@@ -717,11 +717,10 @@ function BattleCalc999() {
                     Last_DMG_A[_] = Last_DMG_B[_] = w_DMG[_],
                     InnStr[_] += Last_DMG_A[_]
             } else {
-                wSBr = 4 * n_A_LEFT_REFINE,
                 n_A_ATK_w = Math.round(Math.floor(n_A_STR / 10) * Math.floor(n_A_STR / 10)),
                 n_A_ATK = n_A_STR + n_A_ATK_w + Math.floor(n_A_DEX / 5) + Math.floor(n_A_LUK / 5);
                 for (var _ = 0; 2 >= _; _++)
-                    w_DMG[_] = n_A_ATK * wbairitu + Shieldw + wSBr,
+                    w_DMG[_] = n_A_ATK * wbairitu + Shieldw,
                     w_DMG[_] = Math.floor(Math.floor(w_DMG[_] * defReduction(selectedMonster[14]) - n_B_DEF2[_]) * wbairitu2),
                     w_DMG[_] = Math.floor(w_DMG[_] * stoneDiscusMod),
                     w_DMG[_] = ApplyModifiers(w_DMG[_]),
@@ -730,8 +729,13 @@ function BattleCalc999() {
                     Last_DMG_A[_] = Last_DMG_B[_] = w_DMG[_],
                     InnStr[_] += Last_DMG_A[_]
             }
-            w_DMG[1] = w_DMG[1] * w_HIT / 100,
-            CastAndDelay(),
+            // Add shield refine bonus after all modifiers so it still applies even if elemental mods reduce base damage to 0 (e.g., vs Ghost)
+            w_DMG[1] = w_DMG[1] * w_HIT / 100;
+            for (var _ = 0; 2 >= _; _++)
+                w_DMG[_] += shieldRefineBonus,
+                Last_DMG_A[_] = Last_DMG_B[_] = w_DMG[_],
+                InnStr[_] = Last_DMG_A[_];
+            CastAndDelay();
             BattleCalc998()
         } else if (324 == n_A_ActiveSkill) {
             var stoneDiscusMod = EquipNumSearch(90071) ? 1 + .03 * n_A_LEFT_REFINE : 1;
