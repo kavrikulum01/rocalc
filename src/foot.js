@@ -991,7 +991,8 @@ function StAllCalc() {
         10 == n_A_WeaponType && 15 == n_A_Arrow && (S += 20),
         (10 == n_A_WeaponType || 17 <= n_A_WeaponType && n_A_WeaponType <= 21) && (S += 15 * CardNumSearch(462)),
         SkillSearch(195) ? S += 7.5 + 2.5 * SkillSearch(195) : TimeItemNumSearch(34) && (S += 10),
-        SRV >= 50 && (4 != n_A_WeaponType && 5 != n_A_WeaponType || !SkillSearch(166) || (n_A_CRI += 3 * SkillSearch(166))),
+        // Spear Quicken: Add 1 CRIT per skill level
+        (4 == n_A_WeaponType || 5 == n_A_WeaponType) && SkillSearch(166) && (n_A_CRI += SkillSearch(166)),
         n_A_CRI += S,
         n_A_Buf3[5] && (n_A_CRI += 10 + n_A_Buf3[5] + Math.floor(n_A_Buf3[35] / 2) + Math.floor(n_A_Buf3[25] / 10)),
         11 == n_A_WeaponType && (n_A_CRI *= 2),

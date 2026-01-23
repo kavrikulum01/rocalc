@@ -433,7 +433,8 @@ m_Item = [
     , [430, 60, 70, 4, 0, 0, 220, 45, "Aebecee's Raging Typhoon Armor", 0, "", 198, 4, 0]
     , [431, 60, 65, 5, 0, "0/1", 110, 75, "Robe of Cast", 0, "", 19, 4, 73, -3, 0]
     , [432, 60, 1, 7, 0, 1, 250, 60, "Glittering Jacket", 0, "", 19, 5, 134, 3, 0]
-    , [433, 61, 113, 5, 0, "0/1", 160, 83, "Sacred Mission", 0, "", 3, 3, 4, 2, 19, 3, 194, 1, 0]
+    // Replace Sacred Mission -> Herald of God. Set INT+3, Weight: 250
+    , [433, 61, 113, 5, 0, "0/1", 250, 83, "Herald of God", 0, "A symbolic shield, rumored to have been given from God to his messenger. Per Refine, reduces damage from all sources by 2%", 3, 3, 4, 3, 19, 3, 17, 20, 194, 1, 5159, 30, 0]
     , [434, 61, 113, 5, 0, 0, 140, 68, "Holy Guard", 0, "", 3, 2, 19, 2, 0]
     , [435, 63, 51, 6, 0, 0, 35, 30, "Safety Boots", 0, "", 193, 1, 0]
     , [436, 62, 55, 0, 0, 0, 55, 75, "Survivor's Manteau", 0, "", 3, 10, 19, 5, 0]
@@ -1895,6 +1896,7 @@ m_Item = [
     , [1369, 9, 0, 2, 0, 1, 60, 0, "Staff of the Scholar", 0, "Ignores 15% of the enemy's MDEF", 4, 4, 89, 15, 20, 3, 0]
     // * Custom item Frozen pick
     , [1370, 1, 1, 52, 4, 0, 60, 36, "Frozen pick", 0, "[Missing properly increasing the damage at +8]", 9, -20, 18, -10, 23, 1, 0]
+    , [1371, 61, 113, 2, 0, 1, 150, 1, "Stone Discus", 0, "Increase damage of Shield Boomerang and Shield Charge by 3% per refine", 0]
 ];
 
 //[ id, display location, job that can use, atk/def, level of weapon, slots, weight, level required to use, "name of item", ?, "description", effect1, effect2, ..., 0 =? ]
