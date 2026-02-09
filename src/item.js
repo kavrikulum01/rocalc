@@ -1847,9 +1847,10 @@ m_Item = [
     // * Custom item Guardian's Skull https://oathro.com/wiki/index.php/Guardian%27s_Skull
     , [1345, 50, 1, 1, 0, 0, 95, 80, "Guardian's Skull", 0, "Ever 2 levels of refinement increases the defense by an additional +1 DEF", 1, 1, 5, 1, 0]
     // * Custom item Magic Sprite Hat https://oathro.com/wiki/index.php/Magic_Sprite_Hat
-    , [1346, 50, 0, 4, 0, 0, 40, 40, "Magic Sprite Hat", 0, "", 1, 1, 2, 1, 76, 5, 0]
+    , [1346, 50, 0, 4, 0, 0, 40, 40, "Magic Sprite Hat", 0, "", 4, 1, 2, 1, 76, 5, 0]
     // * Custom item Momoe's Hairband https://oathro.com/wiki/index.php/Momoe%27s_Hairband
-    , [1347, 50, 0, 2, 0, 0, 20, 1, "Momoe's Hairband", 0, "[Missing 20% dmg to turtles]", 2, 1, 9, 5, 0]
+    // * Effects: 1006=Assaulter, 1168=Solider, 1220=Permeter, 1234=Heater, 1257=Freezer (all +20% damage)
+    , [1347, 50, 0, 2, 0, 0, 20, 1, "Momoe's Hairband", 0, "Increases damage against the turtles of Turtle Island (excluding Turtle General) by 20%", 2, 1, 9, 5, 1006, 20, 1168, 20, 1220, 20, 1234, 20, 1257, 20, 0]
     // * Custom item Necrofantasy Muffler https://oathro.com/wiki/index.php/Necrofantasy_Muffler
     , [1348, 62, 0, 3, 0, 0, 45, 1, "Necrofantasy Muffler", 0, "", 9, 10, 0]
     // * Custom item Necrofantasy Shoes https://oathro.com/wiki/index.php/Necrofantasy_Shoes

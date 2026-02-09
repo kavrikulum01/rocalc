@@ -58,7 +58,7 @@ You can do any item below and submit a PR
 ### Mobs
 - Almost every custom mob has missing skills
 ### Items
-- Momoe's Hairband: Missing 20% DMG to turtles
+- ~~Momoe's Hairband: Missing 20% DMG to turtles~~
 - Poring Dagger: Missing ASPD increase, haven't found how much it increases yet.
 
 ### Cards
